@@ -165,10 +165,14 @@ createApp ({
                         }
                     ],
                 }
-            ],            
+            ],
+            currentConversation: 0,            
         }
     },
     methods: {
-
+        takeIndex: function(index) {
+            this.currentConversation = index
+            console.log(this.currentConversation);
+        },
     }
 }).mount("#app")

@@ -38,6 +38,10 @@ button:hover {
     height: 60px;
 }
 
+.hidden {
+    display: none;
+}
+
 /* Body */
 
 body {
@@ -284,7 +288,7 @@ body {
     list-style-type: none;
 }
 
-.chat ul:first-child {
+.chat ul {
     margin-top: 30px;
 }
 
@@ -293,7 +297,7 @@ body {
 }
 
 .msg-sent {
-    width: 60%;
+    max-width: 60%;
     background-color: #D5F9BA;
     border-radius: 10px;
     align-self: flex-end;
@@ -306,9 +310,10 @@ body {
 }
 
 .msg-recived {
-    width: 60%;
+    max-width: 60%;
     background-color: white;
     border-radius: 10px;
+    align-self: flex-start;
     margin-left: 30px;
 }
 
@@ -332,6 +337,7 @@ body {
     top: 29px;
     right: 20px;
     display: none;
+    z-index: 1;
 }
 
 .actions button {

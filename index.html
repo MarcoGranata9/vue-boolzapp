@@ -66,7 +66,7 @@
 
             <!-- Contacts -->
             <main class="contacts flex">
-                <div class="contact-chat flex" v-for="(obj, index) in contacts" :key="index">
+                <div class="contact-chat flex" v-for="(obj, index) in contacts" :key="index" @click="takeIndex(index)">
                     <div>
                         <img class="avatar-img" :src="`img/avatar${obj.avatar}.jpg`" :alt="obj.name">
                     </div>
@@ -90,13 +90,13 @@
         <div class="chat-col flex">
 
             <!-- Header chat -->
-            <header class="flex">
+            <header class="flex" v-for="(obj, index) in contacts" v-show="currentConversation === index ? obj.visible : !obj.visible">
                 <div>
-                    <img class="avatar-img" src="img/avatar_1.jpg" alt="">
+                    <img class="avatar-img" :src="`img/avatar${obj.avatar}.jpg`" :alt="obj.name">
                 </div>
 
                 <div class="header-chat-text">
-                    <h3>Michele</h3>
+                    <h3>{{obj.name}}</h3>
                     <p>Ultimo accesso oggi alle 16:26</p>
                 </div>
 
@@ -110,9 +110,9 @@
 
             <!-- Main chat -->
             <main class="chat">
-                <ul class="flex">
-                    <li class="msg-sent flex">
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore voluptatem neque, reprehenderit suscipit adipisci culpa iusto eos ratione recusandae tempora ipsum a soluta explicabo obcaecati! Reiciendis eaque quaerat placeat quisquam?</p>
+                <ul class="flex" v-for="(obj, index) in contacts" v-show="currentConversation === index ? obj.visible : !obj.visible">
+                    <li class="msg-sent flex" v-for="(messageObj, index) in obj.messages" :class="{'msg-sent' : messageObj.status === 'sent', 'msg-recived' : messageObj.status === 'received'}">
+                        <p >{{messageObj.message}}</p>
                         
                         <div class="msg-utility flex">
                             <i class="fa-solid fa-chevron-down">
@@ -122,20 +122,6 @@
                                 </div>
                             </i>
                              
-                            <span>16:13</span>
-                        </div>
-                    </li>
-                    <li class="msg-recived flex">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed hic dolorem eligendi laudantium ipsa cum officiis provident eaque voluptas voluptatem eos alias tempore, rerum fugit illum voluptatibus? Quibusdam, ut voluptas.</p>
-
-                        <div class="msg-utility flex">
-                            <i class="fa-solid fa-chevron-down">
-                                <div class="actions">
-                                    <button>Info messaggio</button>
-                                    <button>Cancella messaggio</button>
-                                </div>
-                            </i>
-                            
                             <span>16:13</span>
                         </div>
                     </li>
