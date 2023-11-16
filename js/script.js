@@ -211,6 +211,9 @@ createApp ({
                     element.visibleSearch = false
                 }    
             });
+        },
+        deleteMessage: function (index) {
+            this.contacts[this.currentConversation].messages.splice(index, 1)
         }
     }
 }).mount("#app")

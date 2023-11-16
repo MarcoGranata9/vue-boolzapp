@@ -59,7 +59,7 @@
             <div class="search-bar flex">
                 <div class="flex search-bar-wrapper">
                     <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                    <input type="search" placeholder="Cerca o inizia una nuova chat" v-model="searchText" @keyup="searchContact">
+                    <input type="text" placeholder="Cerca o inizia una nuova chat" v-model="searchText" @keyup="searchContact">
                 </div>
             </div>
             <!-- /Search bar -->
@@ -118,7 +118,7 @@
                             <i class="fa-solid fa-chevron-down">
                                 <div class="actions">
                                     <button>Info messaggio</button>
-                                    <button>Cancella messaggio</button>
+                                    <button @click="deleteMessage(index)">Cancella messaggio</button>
                                 </div>
                             </i>
                              

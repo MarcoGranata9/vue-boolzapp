@@ -334,10 +334,17 @@ body {
 .actions {
     position: absolute;
     background-color: white;
-    top: 29px;
-    right: 20px;
+    top: 28px;
     display: none;
     z-index: 1;
+}
+
+.msg-sent .actions {
+    right: 18px;
+}
+
+.msg-recived .actions {
+    left: 0px;
 }
 
 .actions button {
