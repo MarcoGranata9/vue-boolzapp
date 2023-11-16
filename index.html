@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whatsapp</title>
+    <!-- Style -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Vue -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <!-- Container -->
+    <div class="container flex" id="app">
+        
+        <!-- Contacts column -->
+        <div class="contacts-col flex">
+            <!-- Contacts header -->
+            <header class="flex">
+
+                <div class="contacts-h-left flex">
+                    <img class="avatar-img" src="img/avatar_io.jpg" alt="">
+                </div>
+
+                <ul class="contacts-h-right flex">
+                    <li>
+                        <button href=""><i class="fa-solid fa-circle-notch"></i></button>
+                    </li>
+                    <li>
+                        <button href=""><i class="fa-solid fa-message"></i></button>
+                    </li>
+                    <li>
+                        <button href=""><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                    </li>
+
+                </ul>
+            </header>
+            <!-- Contacts header -->
+
+            <!-- Notifications -->
+            <div class="notifications flex">
+                <div class="bell">
+                    <i class="fa-solid fa-bell-slash avatar-img"></i>
+                </div>
+                <div>
+                    <h4>Ricevi notifiche di nuovi messaggi</h4>
+                    <a href="">Attiva notifiche desktop</a>
+                </div>
+            </div>
+            <!-- /Notifications -->
+
+            <!-- Search bar -->
+            <div class="search-bar flex">
+                <div class="flex search-bar-wrapper">
+                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <input type="search" placeholder=" Cerca o inizia una nuova chat">
+                </div>
+            </div>
+            <!-- /Search bar -->
+
+            <!-- Contacts -->
+            <main class="contacts flex">
+                <div class="contact-chat flex" v-for="(obj, index) in contacts" :key="index">
+                    <div>
+                        <img class="avatar-img" :src="`img/avatar${obj.avatar}.jpg`" :alt="obj.name">
+                    </div>
+
+                    <div class="contact-name"> 
+                        <h3>{{obj.name}}</h3>
+                        <p>Ultimo messaggio ricevuto</p>
+                    </div>
+
+                    <div class="time">
+                        <h5>16:15</h5>
+                    </div>
+                </div>
+            </main>
+            <!-- /Contacts -->
+
+        </div>
+        <!-- /Contacts column -->
+
+        <!-- Chat column -->
+        <div class="chat-col flex">
+
+            <!-- Header chat -->
+            <header class="flex">
+                <div>
+                    <img class="avatar-img" src="img/avatar_1.jpg" alt="">
+                </div>
+
+                <div class="header-chat-text">
+                    <h3>Michele</h3>
+                    <p>Ultimo accesso oggi alle 16:26</p>
+                </div>
+
+                <ul class="flex">
+                    <li><button><i class="fa-solid fa-magnifying-glass"></i></button></li>
+                    <li><button><i class="fa-solid fa-paperclip"></i></button></li>
+                    <li><button><i class="fa-solid fa-ellipsis-vertical"></i></button></li>
+                </ul>
+            </header>
+            <!-- /Header chat -->
+
+            <!-- Main chat -->
+            <main class="chat">
+                <ul class="flex">
+                    <li class="msg-sent flex">
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore voluptatem neque, reprehenderit suscipit adipisci culpa iusto eos ratione recusandae tempora ipsum a soluta explicabo obcaecati! Reiciendis eaque quaerat placeat quisquam?</p>
+                        
+                        <div class="msg-utility flex">
+                            <i class="fa-solid fa-chevron-down">
+                                <div class="actions">
+                                    <button>Info messaggio</button>
+                                    <button>Cancella messaggio</button>
+                                </div>
+                            </i>
+                             
+                            <span>16:13</span>
+                        </div>
+                    </li>
+                    <li class="msg-recived flex">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed hic dolorem eligendi laudantium ipsa cum officiis provident eaque voluptas voluptatem eos alias tempore, rerum fugit illum voluptatibus? Quibusdam, ut voluptas.</p>
+
+                        <div class="msg-utility flex">
+                            <i class="fa-solid fa-chevron-down">
+                                <div class="actions">
+                                    <button>Info messaggio</button>
+                                    <button>Cancella messaggio</button>
+                                </div>
+                            </i>
+                            
+                            <span>16:13</span>
+                        </div>
+                    </li>
+                </ul>
+            </main>
+            <!-- /Main chat -->
+
+            <!-- Footer chat -->
+            <footer class="flex">
+                <button class="darker-btn"><i class="fa-regular fa-face-smile"></i></button>
+
+                
+                <input type="text" placeholder="Scrivi un messaggio">
+                
+
+                <button class="darker-btn"><i class="fa-solid fa-microphone"></i></button>
+            </footer>
+            <!-- /Footer chat -->
+        </div>
+        <!-- /Chat column -->
+        
+    </div>
+    <!-- /Container -->
+
+    <!-- Script -->
+    <script src="js/script.js"></script>
+</body>
+</html>
