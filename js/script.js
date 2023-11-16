@@ -8,6 +8,7 @@ createApp ({
                     name: 'Michele',
                     avatar: '_1',
                     visible: true,
+                    visibleSearch: true,
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -30,6 +31,7 @@ createApp ({
                     name: 'Fabio',
                     avatar: '_2',
                     visible: true,
+                    visibleSearch: true,
                     messages: [
                         {
                             date: '20/03/2020 16:30:00',
@@ -52,6 +54,7 @@ createApp ({
                     name: 'Samuele',
                     avatar: '_3',
                     visible: true,
+                    visibleSearch: true,
                     messages: [
                         {
                             date: '28/03/2020 10:10:40',
@@ -74,6 +77,7 @@ createApp ({
                     name: 'Alessandro B.',
                     avatar: '_4',
                     visible: true,
+                    visibleSearch: true,
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -91,6 +95,7 @@ createApp ({
                     name: 'Alessandro L.',
                     avatar: '_5',
                     visible: true,
+                    visibleSearch: true,
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -108,6 +113,7 @@ createApp ({
                     name: 'Claudia',
                     avatar: '_6',
                     visible: true,
+                    visibleSearch: true,
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -130,6 +136,7 @@ createApp ({
                     name: 'Federico',
                     avatar: '_7',
                     visible: true,
+                    visibleSearch: true,
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -147,6 +154,7 @@ createApp ({
                     name: 'Davide',
                     avatar: '_8',
                     visible: true,
+                    visibleSearch: true,
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -166,7 +174,9 @@ createApp ({
                     ],
                 }
             ],
-            currentConversation: 0,            
+            currentConversation: 0,
+            newMessage: "",
+            searchText: "",            
         }
     },
     methods: {
@@ -174,5 +184,33 @@ createApp ({
             this.currentConversation = index
             console.log(this.currentConversation);
         },
+        newMessageFunction: function() {
+            if (this.newMessage !== "") {
+                this.contacts[this.currentConversation].messages.push({
+                    date: "10/01/2020 15:30:55",
+                    message: this.newMessage,
+                    status: "sent" 
+                })
+                setTimeout(this.replyMessageFunction, 1000)
+            }
+            this.newMessage = "" 
+        },
+        replyMessageFunction: function() {
+            this.contacts[this.currentConversation].messages.push({
+                date: "10/01/2020 15:30:55",
+                message: "OK",
+                status: "received" 
+            })
+        },
+        searchContact: function() {
+            let searchContact = this.searchText.toLowerCase();
+            this.contacts.forEach(element => {
+                if (element.name.toLowerCase().includes(searchContact)) {
+                    element.visibleSearch = true    
+                } else {
+                    element.visibleSearch = false
+                }    
+            });
+        }
     }
 }).mount("#app")

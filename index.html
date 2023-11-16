@@ -59,14 +59,14 @@
             <div class="search-bar flex">
                 <div class="flex search-bar-wrapper">
                     <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                    <input type="search" placeholder=" Cerca o inizia una nuova chat">
+                    <input type="search" placeholder="Cerca o inizia una nuova chat" v-model="searchText" @keyup="searchContact">
                 </div>
             </div>
             <!-- /Search bar -->
 
             <!-- Contacts -->
             <main class="contacts flex">
-                <div class="contact-chat flex" v-for="(obj, index) in contacts" :key="index" @click="takeIndex(index)">
+                <div class="contact-chat flex" v-for="(obj, index) in contacts" :key="index" @click="takeIndex(index)" v-show="obj.visibleSearch">
                     <div>
                         <img class="avatar-img" :src="`img/avatar${obj.avatar}.jpg`" :alt="obj.name">
                     </div>
@@ -134,7 +134,7 @@
                 <button class="darker-btn"><i class="fa-regular fa-face-smile"></i></button>
 
                 
-                <input type="text" placeholder="Scrivi un messaggio">
+                <input type="text" placeholder="Scrivi un messaggio" v-model.trim="newMessage" @keyup.enter="newMessageFunction">
                 
 
                 <button class="darker-btn"><i class="fa-solid fa-microphone"></i></button>
