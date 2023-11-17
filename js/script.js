@@ -228,21 +228,32 @@ createApp ({
         },
         dateToHourMin: function (date) {
             const fullDate = DateTime.fromFormat(date, "d/M/yyyy H:m:s")
-            return fullDate.toFormat("H:m")
+            return fullDate.toFormat("HH:mm")
         },
         dateNow: function() {
             const now = DateTime.now().toFormat("d/M/yyyy H:m:s")
             return now
         },
         lastMessageDate: function(index) {
-            const date = this.contacts[index].messages[this.contacts[index].messages.length - 1].date
-            const fullDate = DateTime.fromFormat(date, "d/M/yyyy H:m:s")
-            return fullDate.toFormat("d/M/yyyy H:m:s")
+            let fullDate = "";
+            if (this.contacts[index].messages.length === 0) {
+                fullDate = "";     
+            } else {
+                const date = this.contacts[index].messages[this.contacts[index].messages.length - 1].date
+                fullDate = DateTime.fromFormat(date, "d/M/yyyy H:m:s").toFormat("d/M/yyyy HH:mm:ss")
+            }
+            return fullDate
         },
         latestAccess: function(index) {
-            const date = this.contacts[index].messages[this.contacts[index].messages.length - 1].date
-            const fullDate = DateTime.fromFormat(date, "d/M/yyyy H:m:s")
-            return fullDate.toFormat("H:m")
+            let fullDate = "";
+            if (this.contacts[index].messages.length === 0) {
+                fullDate = "";    
+            } else {
+                const date = this.contacts[index].messages[this.contacts[index].messages.length - 1].date
+                fullDate = DateTime.fromFormat(date, "d/M/yyyy H:m:s").toFormat("HH:mm")
+            }
+            return fullDate
         }
     }
 }).mount("#app")
+
