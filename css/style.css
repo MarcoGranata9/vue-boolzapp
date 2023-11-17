@@ -185,6 +185,10 @@ body {
     cursor: pointer;
 }
 
+.avatar-img-container {
+    flex-shrink: 0;
+}
+
 .contact-chat:hover {
     background-color: rgb(237, 236, 236);
 }

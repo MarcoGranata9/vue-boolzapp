@@ -1,5 +1,7 @@
 const { createApp } = Vue
 
+const DateTime = luxon.DateTime;
+
 createApp ({
     data() {
         return {
@@ -187,7 +189,7 @@ createApp ({
         newMessageFunction: function() {
             if (this.newMessage !== "") {
                 this.contacts[this.currentConversation].messages.push({
-                    date: "10/01/2020 15:30:55",
+                    date: this.dateNow(),
                     message: this.newMessage,
                     status: "sent" 
                 })
@@ -197,9 +199,9 @@ createApp ({
         },
         replyMessageFunction: function() {
             this.contacts[this.currentConversation].messages.push({
-                date: "10/01/2020 15:30:55",
+                date: this.dateNow(),
                 message: "OK",
-                status: "received" 
+                status: "received"
             })
         },
         searchContact: function() {
@@ -214,6 +216,33 @@ createApp ({
         },
         deleteMessage: function (index) {
             this.contacts[this.currentConversation].messages.splice(index, 1)
+        },
+        takeLastMessage: function(index) {
+            let lastMsg = "";
+            if (this.contacts[index].messages.length === 0) {
+                lastMsg = ""    
+            } else {
+                lastMsg = this.contacts[index].messages[this.contacts[index].messages.length - 1].message
+            }
+            return lastMsg 
+        },
+        dateToHourMin: function (date) {
+            const fullDate = DateTime.fromFormat(date, "d/M/yyyy H:m:s")
+            return fullDate.toFormat("H:m")
+        },
+        dateNow: function() {
+            const now = DateTime.now().toFormat("d/M/yyyy H:m:s")
+            return now
+        },
+        lastMessageDate: function(index) {
+            const date = this.contacts[index].messages[this.contacts[index].messages.length - 1].date
+            const fullDate = DateTime.fromFormat(date, "d/M/yyyy H:m:s")
+            return fullDate.toFormat("d/M/yyyy H:m:s")
+        },
+        latestAccess: function(index) {
+            const date = this.contacts[index].messages[this.contacts[index].messages.length - 1].date
+            const fullDate = DateTime.fromFormat(date, "d/M/yyyy H:m:s")
+            return fullDate.toFormat("H:m")
         }
     }
 }).mount("#app")

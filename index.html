@@ -12,6 +12,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Luxon -->
+    <script src="
+    https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js
+    "></script>
     <!-- Vue -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
@@ -67,17 +71,17 @@
             <!-- Contacts -->
             <main class="contacts flex">
                 <div class="contact-chat flex" v-for="(obj, index) in contacts" :key="index" @click="takeIndex(index)" v-show="obj.visibleSearch">
-                    <div>
+                    <div class="avatar-img-container">
                         <img class="avatar-img" :src="`img/avatar${obj.avatar}.jpg`" :alt="obj.name">
                     </div>
 
                     <div class="contact-name"> 
                         <h3>{{obj.name}}</h3>
-                        <p>Ultimo messaggio ricevuto</p>
+                        <p>{{ takeLastMessage(index) }}</p>
                     </div>
 
                     <div class="time">
-                        <h5>16:15</h5>
+                        <h5>{{ latestAccess(index) }}</h5>
                     </div>
                 </div>
             </main>
@@ -97,7 +101,7 @@
 
                 <div class="header-chat-text">
                     <h3>{{obj.name}}</h3>
-                    <p>Ultimo accesso oggi alle 16:26</p>
+                    <p>Ultimo accesso {{ lastMessageDate(index) }}</p>
                 </div>
 
                 <ul class="flex">
@@ -110,8 +114,15 @@
 
             <!-- Main chat -->
             <main class="chat">
-                <ul class="flex" v-for="(obj, index) in contacts" v-show="currentConversation === index ? obj.visible : !obj.visible">
-                    <li class="msg-sent flex" v-for="(messageObj, index) in obj.messages" :class="{'msg-sent' : messageObj.status === 'sent', 'msg-recived' : messageObj.status === 'received'}">
+                <ul class="flex" 
+                v-for="(obj, index) in contacts" 
+                v-show="currentConversation === index ? obj.visible : !obj.visible" 
+                :key="obj.name">
+                    <li class="msg-sent flex" 
+                    v-for="(messageObj, index) in obj.messages" 
+                    :class="{'msg-sent' : messageObj.status === 'sent', 'msg-recived' : messageObj.status === 'received'}" 
+                    :key="messageObj.date">
+
                         <p >{{messageObj.message}}</p>
                         
                         <div class="msg-utility flex">
@@ -122,7 +133,7 @@
                                 </div>
                             </i>
                              
-                            <span>16:13</span>
+                            <span>{{ dateToHourMin(messageObj.date) }}</span>
                         </div>
                     </li>
                 </ul>
@@ -146,6 +157,7 @@
     </div>
     <!-- /Container -->
 
+    
     <!-- Script -->
     <script src="js/script.js"></script>
 </body>
