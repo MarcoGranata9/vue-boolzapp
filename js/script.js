@@ -198,7 +198,8 @@ createApp ({
             this.newMessage = "" 
         },
         replyMessageFunction: function() {
-            this.contacts[this.currentConversation].messages.push({
+            const replyIndex = this.currentConversation
+            this.contacts[replyIndex].messages.push({
                 date: this.dateNow(),
                 message: "OK",
                 status: "received"
@@ -234,26 +235,20 @@ createApp ({
             const now = DateTime.now().toFormat("d/M/yyyy H:m:s")
             return now
         },
-        lastMessageDate: function(index) {
+        lastMessageDate: function(index, fullFormat) {
             let fullDate = "";
+
             if (this.contacts[index].messages.length === 0) {
                 fullDate = "";     
-            } else {
+            } else if (fullFormat) {
                 const date = this.contacts[index].messages[this.contacts[index].messages.length - 1].date
                 fullDate = DateTime.fromFormat(date, "d/M/yyyy H:m:s").toFormat("d/M/yyyy HH:mm:ss")
-            }
-            return fullDate
-        },
-        latestAccess: function(index) {
-            let fullDate = "";
-            if (this.contacts[index].messages.length === 0) {
-                fullDate = "";    
             } else {
                 const date = this.contacts[index].messages[this.contacts[index].messages.length - 1].date
                 fullDate = DateTime.fromFormat(date, "d/M/yyyy H:m:s").toFormat("HH:mm")
             }
             return fullDate
-        }
+        },
     }
 }).mount("#app")
 

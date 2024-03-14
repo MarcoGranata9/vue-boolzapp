@@ -81,7 +81,7 @@
                     </div>
 
                     <div class="time">
-                        <h5>{{ latestAccess(index) }}</h5>
+                        <h5>{{ lastMessageDate(index) }}</h5>
                     </div>
                 </div>
             </main>
@@ -101,7 +101,7 @@
 
                 <div class="header-chat-text">
                     <h3>{{obj.name}}</h3>
-                    <p>Ultimo accesso {{ lastMessageDate(index) }}</p>
+                    <p>Ultimo accesso {{ lastMessageDate(index, true) }}</p>
                 </div>
 
                 <ul class="flex">

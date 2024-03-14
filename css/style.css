@@ -72,7 +72,7 @@ body {
 /* Contacts column */
 
 .contacts-col {
-    width: 35%;
+    width: 20%;
     height: 100%;
     flex-direction: column;
     min-width: 330px;
